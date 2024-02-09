@@ -2,10 +2,25 @@
 # WARN!
 # Ubuntu & Debian OS Only!
 
+# Check if the script is run by the root user
+if [ "$(id -u)" -eq 0 ]; then
+    echo "The script is run by the root user."
+    # Place the commands that require administrative privileges here
+else
+    echo "This script requires administrative privileges. Please run the script with sudo."
+fi
+
 # Check if a domain is provided as an argument
 if [ -z "$1" ]; then
     echo "Usage: $0 <your_domain>"
     exit 1
+fi
+
+# Check if the sudo command is available
+if ! command -v sudo &> /dev/null; then
+    echo "The sudo command is not available. Installing sudo..."
+    # Install sudo (may require administrative privileges)
+    su -c "apt-get update && apt-get install -y sudo" 
 fi
 
 domain=$1
@@ -17,6 +32,7 @@ sudo mkdir -p $webroot
 sudo chown www-data:www-data $webroot
 
 # Update package list
+
 echo "Updating package list..."
 sudo apt update > /dev/null 2>&1
 
@@ -39,7 +55,7 @@ sudo apt install -y nginx > /dev/null 2>&1
 # Install MySQL Server
 echo "Installing MySQL Server..."
 sudo apt install -y mariadb-server > /dev/null 2>&1
-sudo mysql_secure_installation > /dev/null 2>&1
+sudo mysql_secure_installation 
 
 # Install PHP 8.1 and required extensions
 echo "Installing PHP 8.1 and required extensions..."
