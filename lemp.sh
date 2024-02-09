@@ -63,7 +63,9 @@ sudo apt install -y php8.1-fpm php8.1-mysql > /dev/null 2>&1
 
 # Configure Nginx to use PHP
 echo "Configuring Nginx to use PHP..."
-
+string_to_replace="# server_names_hash_bucket_size 64;"
+new_string="server_names_hash_bucket_size 64;"
+sudo sed -i "s/$string_to_replace/$new_string/" "/etc/nginx/nginx.conf"
 sudo cat> /etc/nginx/sites-available/$domain << END
 server {
     listen 80;
