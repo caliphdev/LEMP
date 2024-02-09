@@ -42,7 +42,8 @@ sudo apt install -y software-properties-common > /dev/null 2>&1
 
 # Add PHP repository
 echo "Adding PHP repository..."
-sudo add-apt-repository -y ppa:ondrej/php > /dev/null 2>&1
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/sury-php.list
+wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add -
 
 # Update package list again
 echo "Updating package list after adding repository..."
