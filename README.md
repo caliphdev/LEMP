@@ -7,7 +7,7 @@ This script automates the installation of the LEMP (Linux, Nginx, MySQL, PHP) st
 Run the following command in your terminal to download and execute the script:
 
 ```bash
-wget https://raw.githubusercontent.com/caliphdev/LEMP/main/ilemp.sh
+wget https://raw.githubusercontent.com/caliphdev/LEMP/main/lemp.sh
 chmod +x lemp.sh
 ./lemp.sh your_domain
 ```
