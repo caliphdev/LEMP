@@ -63,10 +63,8 @@ sudo apt install -y php8.1-fpm php8.1-mysql > /dev/null 2>&1
 
 # Configure Nginx to use PHP
 echo "Configuring Nginx to use PHP..."
-sudo nano /etc/nginx/sites-available/$domain > /dev/null 2>&1
 
-# Create Nginx server block configuration
-sudo tee /etc/nginx/sites-available/$domain <<EOL
+sudo cat> /etc/nginx/sites-available/$domain << END
 server {
     listen 80;
     server_name $domain;
@@ -92,7 +90,7 @@ server {
     error_log  /var/log/nginx/$domain_error.log;
     access_log /var/log/nginx/$domain_access.log;
 }
-EOL
+END
 
 # Create a symbolic link to enable the site
 sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/
