@@ -107,7 +107,7 @@ sudo systemctl reload nginx > /dev/null 2>&1
 
 # Restart PHP-FPM
 echo "Restarting PHP-FPM..."
-sudo systemctl restart php8.1-fpm > /dev/null 2>&1
+sudo systemctl restart php8.1-fpm 
 
 # Create info.php
 echo "Creating info.php..."
