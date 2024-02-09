@@ -66,7 +66,7 @@ echo "Configuring Nginx to use PHP..."
 sudo nano /etc/nginx/sites-available/$domain > /dev/null 2>&1
 
 # Create Nginx server block configuration
-sudo tee /etc/nginx/sites-available/$domain > /dev/null <<EOL
+sudo tee /etc/nginx/sites-available/$domain <<EOL
 server {
     listen 80;
     server_name $domain;
